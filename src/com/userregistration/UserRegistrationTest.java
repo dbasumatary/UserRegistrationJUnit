@@ -88,3 +88,4 @@ public class UserRegistrationTest {
         Assert.assertEquals(false, password);
     }
 }
+
