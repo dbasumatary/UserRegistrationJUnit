@@ -1,6 +1,7 @@
 package com.userregistration;
 
 import java.util.Scanner;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,17 +15,12 @@ public class UserRegistration {
 
         System.out.print("Enter your First Name: ");
         userDetails.setFirstName(scanner.next());
+        Predicate<String> check = n -> {Pattern pattern = Pattern.compile("[A-Z][a-z]{3,}");
+                          Matcher matcher = pattern.matcher(userDetails.getFirstName());
+                          boolean isFirstName =  matcher.matches();
+                          return isFirstName;};
 
-        //The Pattern class is used to define a pattern for the regex engine.
-        Pattern pattern = Pattern.compile("[A-Z][a-z]{3,}");
-
-        // The Matcher class is used to perform match operations on a character sequence.
-        Matcher matcher = pattern.matcher(userDetails.getFirstName());
-
-        //the matches() method tries to match the whole string against the pattern.
-        boolean isFirstName =  matcher.matches();
-
-        if(isFirstName)
+        if(check.test(userDetails.getFirstName()))
             System.out.println(userDetails.firstName + " is a valid First Name.\n");
         else
             System.err.println(userDetails.firstName + " is an invalid First Name.");
@@ -36,17 +32,12 @@ public class UserRegistration {
 
         System.out.print("Enter your last Name: ");
         userDetails.setLastName(scanner.next());
+        Predicate<String> check = n -> { Pattern pattern = Pattern.compile("[A-Z][a-z]{3,}");
+            Matcher matcher = pattern.matcher(userDetails.getLastName());
+            boolean isLastName =  matcher.matches();
+            return isLastName;};
 
-        //The Pattern class is used to define a pattern for the regex engine.
-        Pattern pattern = Pattern.compile("[A-Z][a-z]{3,}");
-
-        // The Matcher class is used to perform match operations on a character sequence.
-        Matcher matcher = pattern.matcher(userDetails.getLastName());
-
-        //the matches() method tries to match the whole string against the pattern.
-        boolean isLastName =  matcher.matches();
-
-        if(isLastName)
+        if(check.test(userDetails.getLastName()))
             System.out.println(userDetails.lastName + " is a valid last Name.\n");
         else
             System.err.println(userDetails.lastName + " is an invalid last Name.");
@@ -56,17 +47,13 @@ public class UserRegistration {
     public void checkEmailAddress() throws EmailIdInvalidException{
         System.out.print("Enter your email address: ");
         userDetails.setEmailAddress(scanner.next());
+        Predicate<String> check = n -> {
+            Pattern pattern = Pattern.compile("^(?=.{3,20}@)[a-zA-Z]+[A-Za-z0-9]+[- + . _]?[a-zA-Z0-9]+.@[^-_.][a-zA-Z0-9]+(\\.[a-z]+)(\\.[a-z]+)*$");
+            Matcher matcher = pattern.matcher(userDetails.getEmailAddress());
+            boolean isEmail =  matcher.matches();
+            return isEmail;};
 
-        //The Pattern class is used to define a pattern for the regex engine.
-        Pattern pattern = Pattern.compile("^(?=.{3,20}@)[a-zA-Z]+[A-Za-z0-9]+[- + . _]?[a-zA-Z0-9]+.@[^-_.][a-zA-Z0-9]+(\\.[a-z]+)(\\.[a-z]+)*$");
-
-        // The Matcher class is used to perform match operations on a character sequence.
-        Matcher matcher = pattern.matcher(userDetails.getEmailAddress());
-
-        //the matches() method tries to match the whole string against the pattern.
-        boolean isEmail =  matcher.matches();
-
-        if(isEmail) {
+        if(check.test(userDetails.getEmailAddress())) {
             System.out.println(userDetails.emailAddress + " is a valid email address.\n");
         }
         else {
@@ -80,17 +67,12 @@ public class UserRegistration {
 
         //Setting the input as mobile number
         userDetails.setMobileNumber(scanner.next());
+        Predicate<String> check = n -> { Pattern pattern = Pattern.compile("^[+][0-9]{2}-[0-9]{10}$");
+            Matcher matcher = pattern.matcher(userDetails.getMobileNumber());
+            boolean isMobileNumber =  matcher.matches();
+            return isMobileNumber;};
 
-        //The Pattern class is used to define a pattern for the regex engine.
-        Pattern pattern = Pattern.compile("^[+][0-9]{2}-[0-9]{10}$");
-
-        // The Matcher class is used to perform match operations on a character sequence.
-        Matcher matcher = pattern.matcher(userDetails.getMobileNumber());
-
-        //the matches() method tries to match the whole string against the pattern.
-        boolean isMobileNumber =  matcher.matches();
-
-        if(isMobileNumber)
+        if(check.test(userDetails.getMobileNumber()))
             System.out.println(userDetails.mobileNumber + " is a valid mobile number.\n");
         else
             System.err.println(userDetails.mobileNumber + " is an invalid mobile number.");
@@ -102,17 +84,12 @@ public class UserRegistration {
 
         //Setting the input as password
         userDetails.setPassword(scanner.next());
+        Predicate<String> check = n -> { Pattern pattern = Pattern.compile("^((?=.*[A-Z])(?=.*[0-9])(?=[^!@#$%&]*[!@#$%&][^!@#$%&]*$)[A-Za-z0-9!@#$%&]{8,})$");
+            Matcher matcherObject = pattern.matcher(userDetails.getPassword());
+            boolean isPassword =  matcherObject.matches();
+            return isPassword;};
 
-        //The Pattern class is used to define a pattern for the regex engine. Look up
-        Pattern pattern = Pattern.compile("^((?=.*[A-Z])(?=.*[0-9])(?=[^!@#$%&]*[!@#$%&][^!@#$%&]*$)[A-Za-z0-9!@#$%&]{8,})$");
-
-        // The Matcher class is used to perform match operations on a character sequence.
-        Matcher matcherObject = pattern.matcher(userDetails.getPassword());
-
-        //the matches() method tries to match the whole string against the pattern.
-        boolean isPassword =  matcherObject.matches();
-
-        if(isPassword) {
+        if(check.test(userDetails.getPassword())) {
             System.out.println(userDetails.password + " is a valid password.\n");
         }
         else {
