@@ -47,7 +47,7 @@ public class UserJUnitParameterizedTest {
 
     @Test
     //Test method
-    public void testEmailValidator() {
+    public void testEmailValidator() throws EmailIdInvalidException{
         assertEquals(expectedResult, EmailValidator.isValid(email));
     }
 

@@ -10,7 +10,7 @@ public class UserRegistration {
 
     //UC1: User need to input valid first name
     //The first name starts with capital letter and has minimum three characters
-    public void checkUserFirstName() {
+    public void checkUserFirstName() throws FirstNameInvalidException{
 
         System.out.print("Enter your First Name: ");
         userDetails.setFirstName(scanner.next());
@@ -32,7 +32,7 @@ public class UserRegistration {
 
     //UC2: User need to input valid last name
     //The last name starts with capital letter and has minimum three characters
-    public void checkUserLastName() {
+    public void checkUserLastName() throws LastNameInvalidException{
 
         System.out.print("Enter your last Name: ");
         userDetails.setLastName(scanner.next());
@@ -53,7 +53,7 @@ public class UserRegistration {
     }
 
     //UC3: User need to input valid email address
-    public void checkEmailAddress(){
+    public void checkEmailAddress() throws EmailIdInvalidException{
         System.out.print("Enter your email address: ");
         userDetails.setEmailAddress(scanner.next());
 
@@ -75,7 +75,7 @@ public class UserRegistration {
     }
 
     //UC4: Valid Mobile No (country code followed by space and 10-digit number)
-    public void checkValidMobileNumber(){
+    public void checkValidMobileNumber() throws MobileInvalidException{
         System.out.print("Enter your mobile number: ");
 
         //Setting the input as mobile number
@@ -97,7 +97,7 @@ public class UserRegistration {
     }
 
     //UC8: Valid Password (Exactly 1 special character)
-    public void checkValidPassword(){
+    public void checkValidPassword() throws PasswordInvalidException{
         System.out.print("Enter your password: ");
 
         //Setting the input as password
@@ -124,7 +124,7 @@ public class UserRegistration {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Throwable {
         System.out.println("---------- User Registration ----------\n");
         UserRegistration userRegistration = new UserRegistration();
         userRegistration.checkUserFirstName();
